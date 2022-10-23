@@ -21,6 +21,9 @@ class TaskSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'description', 'tags')
         read_only_fields = ('id',)
 
+class TaskDetailSerializer(TaskSerializer):
+    tags = TagSerializer(many=True, read_only=True)
+
 
 class CourseSerializer(serializers.ModelSerializer):
     tasks = serializers.PrimaryKeyRelatedField(
