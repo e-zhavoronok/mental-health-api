@@ -11,9 +11,14 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    tags = serializers.PrimaryKeyRelatedField(
+        many=True,
+        queryset=Tag.objects.all()
+    )
+
     class Meta:
         model = Task
-        fields = ('id', 'name', 'description')
+        fields = ('id', 'name', 'description', 'tags')
         read_only_fields = ('id',)
 
 
